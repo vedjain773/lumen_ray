@@ -5,6 +5,7 @@
 
 raylib/
 build/
+include/tinyobjloader-1.0.6
 
 # User-specific files
 *.txt

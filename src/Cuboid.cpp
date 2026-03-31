@@ -35,24 +35,6 @@ bool Cuboid::hit(LRay& lr, double ray_tmin, double ray_tmax, hit_info& hi) {
     Quad q5(F, E, H, G);
     Quad q6(B, C, D, A);
 
-    q1.set_material(mat);
-    q1.set_emissive_props(mat->color);
-
-    q2.set_material(mat);
-    q2.set_emissive_props(mat->color);
-
-    q3.set_material(mat);
-    q3.set_emissive_props(mat->color);
-
-    q4.set_material(mat);
-    q4.set_emissive_props(mat->color);
-
-    q5.set_material(mat);
-    q5.set_emissive_props(mat->color);
-
-    q6.set_material(mat);
-    q6.set_emissive_props(mat->color);
-
     std::vector<Quad> qv;
     qv.push_back(q1);
     qv.push_back(q2);
@@ -60,6 +42,11 @@ bool Cuboid::hit(LRay& lr, double ray_tmin, double ray_tmax, hit_info& hi) {
     qv.push_back(q4);
     qv.push_back(q5);
     qv.push_back(q6);
+
+    for (auto& q: qv) {
+        q.set_material(mat);
+        q.set_emissive_props(mat->color);
+    }
 
     hit_info h1;
     bool alr_hit = false;
