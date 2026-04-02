@@ -1,5 +1,7 @@
 # Ray Tracer (Raylib + C++)
 
+This branch of the repository is a complete rewrite of the original manual implementation. While the main branch remains strictly faithful to the "Ray Tracing in One Weekend" series (using custom-built math and data structures), this branch integrates Raylib’s native functions and data types.
+
 A simple ray tracer built in C++ using Raylib for visualization, largely following the concepts and structure from the "Ray Tracing in One Weekend" series by Peter Shirley.
 
 ![A scene with a glass, lambertian and metal spheres](assets/three.png)
