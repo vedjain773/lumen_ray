@@ -4,6 +4,7 @@
 #include "rand.h"
 #include <algorithm>
 #include <cmath>
+#include <iostream>
 
 class Vec3 {
     public:
@@ -68,6 +69,11 @@ inline double dot(const Vec3& a, const Vec3& b) {
     return (
         a.comps[0] * b.comps[0] + a.comps[1] * b.comps[1] + a.comps[2] * b.comps[2]
     );
+}
+
+inline std::ostream& operator<<(std::ostream& os, const Vec3& vec) {
+    os << "(" << vec.comps[0] << " " << vec.comps[1] << " " << vec.comps[2] << ")";
+    return os;
 }
 
 inline Vec3 cross(const Vec3& a, const Vec3& b) {

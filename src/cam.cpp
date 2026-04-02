@@ -11,7 +11,7 @@ Vec3 ray_color(LRay& lr, World& world) {
 }
 
 cam::cam(double asp_ratio, double vh, int rays_pp) {
-    lookfrom = Vec3(0, 0, 0);
+    lookfrom = Vec3(-3, 2, 6);
     lookat = Vec3(0, 0, -1);
     vup = Vec3(0, 1, 0);
 

@@ -30,11 +30,11 @@ Vec3 trace(LRay& lr, World& world) {
             ray_color = hi.mat->get_ray_color(ray_color);
             incoming_light = hi.mat->get_incoming_light(incoming_light, ray_color);
         } else {
-            // Vec3 unit_direction = unit_vec(lr.getDir());
-            // double a = 0.5*(unit_direction.y() + 1.0);
-            // Vec3 vec_col =  (1.0-a)*Vec3(1.0, 1.0, 1.0) + a*Vec3(0.5, 0.7, 1.0);
+            Vec3 unit_direction = unit_vec(lr.getDir());
+            double a = 0.5*(unit_direction.y() + 1.0);
+            Vec3 vec_col =  (1.0-a)*Vec3(1.0, 1.0, 1.0) + a*Vec3(0.5, 0.7, 1.0);
 
-            // incoming_light = incoming_light + vec_col * ray_color;
+            incoming_light = incoming_light + vec_col * ray_color;
             break;
         }
     }
