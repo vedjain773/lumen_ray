@@ -14,8 +14,11 @@ bool Triangle::hit(LRay& lr, double ray_tmin, double ray_tmax, hit_info& hi) {
     Vec3 edge2 = C - A;
     Vec3 out_normal = cross(edge1, edge2);
 
-    Vec3 normal = out_normal;
+    double D = dot(out_normal, A);
 
+    Vec3 w = out_normal / dot(out_normal, out_normal);
+
+    Vec3 normal;
     bool is_front;
     if (dot(out_normal, ray_dir) > 0) {
         normal = -1 * out_normal;
@@ -25,9 +28,7 @@ bool Triangle::hit(LRay& lr, double ray_tmin, double ray_tmax, hit_info& hi) {
         is_front = true;
     }
 
-    double D = dot(normal, A);
-
-    if (dot(normal, ray_dir) == 0)
+    if (std::abs(dot(normal, ray_dir)) < 1e-8)
         return false;
 
     double t = (D - dot(normal, ray_src)) / dot(normal, ray_dir);
@@ -37,7 +38,7 @@ bool Triangle::hit(LRay& lr, double ray_tmin, double ray_tmax, hit_info& hi) {
 
     Vec3 P = lr.at(t);
 
-    if (isInside(P, normal)) {
+    if (isInside(P, normal, w)) {
         hi.t = t;
         hi.point = P;
         hi.normal = normal;
@@ -58,17 +59,15 @@ void Triangle::set_material(material* matr) {
     mat = matr;
 }
 
-bool Triangle::isInside(Vec3 point, Vec3 normal) {
+bool Triangle::isInside(Vec3 point, Vec3 normal, Vec3 w) {
     Vec3 u = B - A;
     Vec3 v = C - A;
     Vec3 p = point - A;
 
-    Vec3 w = normal / dot(normal, normal);
-
     double alpha = dot(w, cross(p, v));
     double beta = dot(w, cross(u, p));
 
-    if (alpha >= 0 && beta >= 0 && alpha + beta <= 1)
+    if (alpha >= 1e-8 && beta >= 1e-8 && alpha + beta <= 1 + 1e-8)
         return true;
     else
         return false;

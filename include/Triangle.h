@@ -15,7 +15,7 @@ class Triangle: public Hittable {
     void set_emissive_props(Vec3 ecol);
     void set_material(material* matr);
 
-    bool isInside(Vec3 point, Vec3 normal);
+    bool isInside(Vec3 point, Vec3 normal, Vec3 w);
 };
 
 #endif
