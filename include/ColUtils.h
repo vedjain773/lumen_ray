@@ -6,7 +6,7 @@
 #include <cmath>
 #include <cstdint>
 
-Color create_color(Vector3& vec);
+Color create_color(Vector3 vec);
 
 inline double gamma(double lin) {
     if (lin > 0.0)

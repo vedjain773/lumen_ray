@@ -1,6 +1,6 @@
 #include "ColUtils.h"
 
-Color create_color(Vector3& vec) {
+Color create_color(Vector3 vec) {
     vec.x = gamma(Clamp(vec.x, 0.0, 0.999));
     vec.y = gamma(Clamp(vec.y, 0.0, 0.999));
     vec.z = gamma(Clamp(vec.z, 0.0, 0.999));
